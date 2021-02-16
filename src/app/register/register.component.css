@@ -1,0 +1,15 @@
+.register-back{
+    background-image: url("src/assets/register.jpg");
+    background-size: cover;
+    min-height: 92vh;
+    background-repeat: no-repeat;
+}
+
+.register-block{
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 15px;
+    border-radius: 15px;
+}
+.modal{
+    background-color: rgba(255, 255, 255, 0.8);
+}

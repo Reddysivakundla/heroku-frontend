@@ -1,0 +1,101 @@
+<div class="register-back">
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+
+            </div>
+            <div class="col-md-8 mt-5">
+                <div class="mt-5">
+                    <div class="row register-block">
+                            <div class="col-md-6 mt-5">
+                                <img src="../../assets/registerside.png" class="img-fluid mt-3" alt="">
+                            </div>
+                            <div class="col-md-6">
+
+                                <div class="alert alert-success d-flex align-items-center" *ngIf="creatingStatus">
+                                    <strong>Creating...</strong>
+                                    <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
+                                </div>
+
+                                <div class="alert alert-danger" *ngIf="responseMessage != null" role="alert">
+                                        {{ responseMessage }}
+                                  </div>
+                                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                                    <div class="form-group">
+                                        <label for="username">Name : </label>
+                                        <div class="input-group mb-2">
+                                            <div class="input-group-prepend">
+                                            <div class="input-group-text"><i class="fas fa-user"></i></div>
+                                            </div>
+                                            <input type="text" class="form-control" formControlName="username" placeholder="Enter Name" required>
+                                        </div>
+                                        <div *ngIf="(f.username.dirty || f.username.touched) && f.username.errors?.required" class="text-danger">
+                                            Username is required
+                                         </div> 
+                                         <div *ngIf="f.username.touched  && f.username.errors?.minlength" class="text-danger">
+                                            Minimum 5 characters required
+                                         </div>     
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="useremail">Email : </label>
+                                        <div class="input-group mb-2">
+                                            <div class="input-group-prepend">
+                                            <div class="input-group-text"> <i class="fas fa-at"></i> </div>
+                                            </div>
+                                            <input type="email" class="form-control" formControlName="useremail" placeholder="Enter Email" required>
+                                        </div>  
+                                        <div *ngIf="(f.useremail.dirty || f.useremail.touched) && f.useremail.errors?.required" class="text-danger">
+                                            Email is required
+                                         </div> 
+                                         <div *ngIf="f.useremail.touched  && f.useremail.errors?.email" class="text-danger">
+                                            Please enter valid email
+                                         </div>  
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="userpassword">Password : </label>
+                                        <div class="input-group mb-2">
+                                            <div class="input-group-prepend">
+                                            <div class="input-group-text"> <i class="fas fa-lock"></i> </div>
+                                            </div>
+                                            <input type="password" class="form-control" formControlName="userpassword" placeholder="Enter Password" required>
+                                        </div> 
+                                        <div *ngIf="(f.userpassword.dirty || f.userpassword.touched) && f.userpassword.errors?.required" class="text-danger">
+                                            Password is required
+                                         </div> 
+                                         <div *ngIf="f.userpassword.touched  && (f.userpassword.errors?.minlength || f.userpassword.errors?.maxlength)" class="text-danger">
+                                            Password should contain minimum 8 characters and maximum 15 characters
+                                         </div> 
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="btn btn-primary" type="submit">Register</button>
+                                    </div>
+                                </form>
+                            </div>
+                     </div>
+                </div>
+            </div>
+            <div class="col-md-2">
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Message -->
+    <div class="modal fade show" id="exampleModal" [style.display]="dispStatus ? 'block' : 'none' "  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="trye">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title text-success" id="exampleModalLabel">Registration Success</h5>
+            </div>
+            <div class="modal-body">
+                <p class="text-center">Thanks for registration.</p>
+                <p class="text-center">Verification mail sent to your email. Please Verify.</p> 
+            </div>
+            <div class="modal-footer">
+              <button type="button" (click)="goLogin()" class="btn btn-success">OK</button>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
